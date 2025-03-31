@@ -144,27 +144,6 @@ def cadastrar_funcionario():
         
     return render_template('cadastrar_funcionario.html')
 
-### cadastrar medico
-@app.route('/cadastrar_medico', methods=['GET', 'POST'])
-def cadastrar_medico():
-    if 'id_usuario' not in session or session['cargo'] != 'administrador':
-        return redirect(url_for('login'))
-    if request.method == 'POST':
-        cpf = request.form['cpf']
-        nome = request.form['nome']
-        cargo = request.form['cargo']
-        usuario = request.form['usuario']
-        senha = request.form['senha']
-        valor = request.form['valor']
-        print("ok")
-        with sqlite3.connect('usuarios.db') as conn:
-            cursor = conn.cursor()
-            cursor.execute('INSERT INTO usuarios (cpf, nome, cargo, usuario, senha) VALUES (?, ?, ?, ?, ?)', (cpf, nome, cargo, usuario, senha))
-            conn.commit()
-        
-    return render_template('cadastrar_medico.html')
-
-
 # Agendamento de consulta
 @app.route('/agendar_consulta', methods=['GET', 'POST'])
 def agendar_consulta():
@@ -424,4 +403,4 @@ def recepcionista():
     return render_template('recepcionista.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, port='5000',host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port='5000')
