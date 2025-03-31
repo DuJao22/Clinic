@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel da Recepcionista</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 0;
+        }
+
+        .menu li {
+            margin: 10px 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.1em;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Painel da Recepcionista</h1>
+        </div>
+        <div class="content">
+            <ul class="menu">
+                <li><a href="{{ url_for('cadastrar_paciente') }}">Cadastrar Paciente</a></li>
+                <li><a href="{{ url_for('agendar_consulta') }}">Agendar Consulta</a></li>
+                <li><a href="{{ url_for('registrar_chegada') }}">Registrar Chegada</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
