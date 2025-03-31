@@ -155,6 +155,7 @@ def cadastrar_medico():
         cargo = request.form['cargo']
         usuario = request.form['usuario']
         senha = request.form['senha']
+        valor = request.form['valor']
         print("ok")
         with sqlite3.connect('usuarios.db') as conn:
             cursor = conn.cursor()
