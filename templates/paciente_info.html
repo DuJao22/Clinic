@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Paciente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .patient-info, .documents, .upload-section {
+            margin-bottom: 20px;
+        }
+
+        .documents ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .documents ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .documents ul li:last-child {
+            border-bottom: none;
+        }
+
+        .documents a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .documents a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group textarea, .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-finalizar, .btn-upload {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-finalizar:hover, .btn-upload:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Informações do Paciente</h2>
+        <div class="patient-info">
+            <p><strong>Nome:</strong> {{ paciente[1] }}</p>
+            <p><strong>CPF:</strong> {{ paciente[2] }}</p>
+            <p><strong>Convênio:</strong> {{ paciente[3] }}</p>
+            <p><strong>CEP:</strong> {{ paciente[4] }}</p>
+            <p><strong>Endereço:</strong> {{ paciente[5] }}, {{ paciente[6] }}</p>
+            <p><strong>Complemento:</strong> {{ paciente[7] }}</p>
+            <p><strong>Telefone:</strong> {{ paciente[8] }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ paciente[9] }}</p>
+            <p><strong>Sexo:</strong> {{ paciente[10] }}</p>
+            <p><strong>Idade:</strong> {{ idade_anos }} anos, {{ idade_meses }} meses e {{ idade_dias }} dias</p>
+            <p><strong>Prontuário:</strong></p>
+            <p>{{ paciente[11] }}</p>
+        </div>
+        <div class="documents">
+            <h3>Documentos Enviados Pelo Médico</h3>
+            <ul>
+                {% for documento in documentos_medico %}
+                    <li><a href="{{ url_for('static', filename='uploads/' ~ documento[0]) }}" target="_blank">{{ documento[0] }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="documents">
+            <h3>Documentos Enviados Pelo Paciente</h3>
+            <ul>
+                {% for documento in documentos_paciente %}
+                    <li><a href="{{ url_for('static', filename='uploads/' ~ documento[0]) }}" target="_blank">{{ documento[0] }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form method="POST">
+            <div class="form-group">
+                <label for="novo_prontuario">Adicionar ao Prontuário</label>
+                <textarea id="novo_prontuario" name="novo_prontuario" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn-finalizar">Finalizar Consulta</button>
+        </form>
+        <div class="upload-section">
+            <h3>Enviar Documento</h3>
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('enviar_documento', id_paciente=paciente[0]) }}">
+                <div class="form-group">
+                    <label for="arquivo">Escolher arquivo</label>
+                    <input type="file" id="arquivo" name="arquivo" accept=".pdf" required>
+                </div>
+                <button type="submit" class="btn-upload">Enviar Documento</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Documento</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0.
+            padding: 0.
+            box-sizing: border-box.
+        }
+
+        body {
+            font-family: Arial, sans-serif.
+            background-color: #f5f5f5.
+            color: #333.
+        }
+
+        .container {
+            max-width: 800px.
+            margin: 0 auto.
+            padding: 20px.
+        }
+
+        .upload-form {
+            background-color: #fff.
+            padding: 20px.
+            border-radius: 10px.
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1).
+        }
+
+        .upload-form h2 {
+            margin-bottom: 20px.
+            font-size: 1.5em.
+            color: #007bff.
+        }
+
+        .form-group {
+            margin-bottom: 15px.
+        }
+
+        .form-group label {
+            display: block.
+            margin-bottom: 5px.
+        }
+
+        .form-group input {
+            width: 100%.
+            padding: 10px.
+            font-size: 1em.
+            border: 1px solid #ccc.
+            border-radius: 5px.
+        }
+
+        button {
+            padding: 10px 20px.
+            font-size: 1em.
+            color: #fff.
+            background-color: #007bff.
+            border: none.
+            border-radius: 5px.
+            cursor: pointer.
+        }
+
+        button:hover {
+            background-color: #0056b3.
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="upload-form">
+            <h2>Enviar Documento</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="arquivo">Arquivo</label>
+                    <input type="file" id="arquivo" name="arquivo" required>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
